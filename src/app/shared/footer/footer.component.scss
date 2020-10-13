@@ -1,0 +1,15 @@
+@import '../../app-variables.scss';
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: $primary;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
