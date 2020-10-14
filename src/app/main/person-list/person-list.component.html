@@ -1,5 +1,15 @@
 <app-search (changeEvent)="filterByName($event)" [placeholder]="'Ingrese un nombre'"></app-search>
-
+<app-toggle (changeEvent)="toggleAvancedOptions($event)"></app-toggle>
+<div *ngIf="showAvancedOptions">
+    <app-search (changeEvent)="filterByLastName($event)" [placeholder]="'Ingrese un apellido'"></app-search>
+    <app-search (changeEvent)="filterByGenderName($event)" [placeholder]="'Ingrese un gender'"></app-search>
+    <app-search (changeEvent)="filterByPartyName($event)" [placeholder]="'Ingrese un party'"></app-search>
+</div>
 <ul>
-    <li *ngFor="let item of renderList" (click)="personSelection(item.id)">{{item.first_name}}</li>
+    <li *ngFor="let item of renderList" (click)="personSelection(item.id)">
+        <span>{{item.first_name}}</span>
+        <span>{{item.last_name}}</span>
+        <span>{{item.gender}}</span>
+        <span>{{item.party}}</span>
+    </li>
 </ul>

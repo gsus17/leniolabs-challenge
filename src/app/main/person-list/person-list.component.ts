@@ -18,6 +18,9 @@ export class PersonListComponent implements OnInit {
   /** Local Person list */
   public renderList = [];
 
+  /** Show/hide the avanced options */
+  public showAvancedOptions: boolean = false;
+
   constructor(
     private mainService: MainService,
     private router: Router) { }
@@ -48,5 +51,33 @@ export class PersonListComponent implements OnInit {
    */
   public filterByName(name: string): void {
     this.renderList = this.personList.filter((x) => x.first_name.toLowerCase().includes(name));
+  }
+
+  /**
+   * Filter by name.
+   */
+  public filterByLastName(lastName: string): void {
+    this.renderList = this.personList.filter((x) => x.last_name.toLowerCase().includes(lastName));
+  }
+
+  /**
+   * Filter by gender.
+   */
+  public filterByGenderName(gender: string): void {
+    this.renderList = this.personList.filter((x) => x.gender.toLowerCase().includes(gender));
+  }
+
+  /**
+   * Filter by party.
+   */
+  public filterByPartyName(party: string): void {
+    this.renderList = this.personList.filter((x) => x.party.toLowerCase().includes(party));
+  }
+
+  /**
+   * Show/Hide avanced options.
+   */
+  public toggleAvancedOptions(value: boolean): void {
+    this.showAvancedOptions = value;
   }
 }
