@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { MainService } from '../main.service';
 
 /**
  * Person list component.
@@ -9,13 +12,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./person-list.component.scss']
 })
 export class PersonListComponent implements OnInit {
+  /** Person list */
+  public personList = [];
 
-  constructor() { }
+  /** Local Person list */
+  public renderList = [];
+
+  constructor(
+    private mainService: MainService,
+    private router: Router) { }
+
 
   /**
-   * Init component.
+   * Init the component.
    */
   public ngOnInit(): void {
+    this.mainService.getPersonList$()
+      .pipe(
+        map((response: any) => response.results[0].members))
+      .subscribe((data: any) => {
+        this.personList = data;
+        this.renderList = data;
+      });
   }
 
+  /**
+   * Redirect to person detail by id.
+   */
+  public personSelection(id: string): void {
+    this.router.navigate(['main/person-detail/', { data: id }]);
+  }
+
+  /**
+   * Filter by name.
+   */
+  public filter(name: string): void {
+    this.renderList = this.personList.filter((x) => x.first_name.toLowerCase().includes(name));
+  }
 }

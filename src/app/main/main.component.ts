@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * Main component.
@@ -8,14 +8,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
   constructor() { }
-
-  /**
-   * Init the component.
-   */
-  public ngOnInit(): void {
-  }
 
 }

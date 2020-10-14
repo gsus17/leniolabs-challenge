@@ -1,1 +1,5 @@
-<p>person-list works!</p>
+<app-search (changeEvent)="filter($event)"></app-search>
+
+<ul>
+    <li *ngFor="let item of renderList" (click)="personSelection(item.id)">{{item.first_name}}</li>
+</ul>

@@ -5,7 +5,17 @@ import { MainComponent } from './main.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
+    children:[
+      {
+        path: 'person-list',
+        loadChildren: () => import('./person-list/person-list.module').then(m => m.PersonListModule)
+      },
+      {
+        path: 'person-detail',
+        loadChildren: () => import('./person-detail/person-detail.module').then(m => m.PersonDetailModule)
+      },
+    ]
   }
 ];
 
