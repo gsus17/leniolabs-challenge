@@ -1,6 +1,8 @@
-<app-search (changeEvent)="filterByName($event)" [placeholder]="'Ingrese un nombre'"></app-search>
-<app-toggle (changeEvent)="toggleAvancedOptions($event)"></app-toggle>
-<div *ngIf="showAvancedOptions">
+<div class="filter-options-container">
+    <app-search (changeEvent)="filterByName($event)" [placeholder]="'Ingrese un nombre'"></app-search>
+    <app-toggle (changeEvent)="toggleAvancedOptions($event)"></app-toggle>
+</div>
+<div *ngIf="showAvancedOptions" class="avanced-option-container">
     <app-search (changeEvent)="filterByLastName($event)" [placeholder]="'Ingrese un apellido'"></app-search>
     <app-search (changeEvent)="filterByGenderName($event)" [placeholder]="'Ingrese un gender'"></app-search>
     <app-search (changeEvent)="filterByPartyName($event)" [placeholder]="'Ingrese un party'"></app-search>

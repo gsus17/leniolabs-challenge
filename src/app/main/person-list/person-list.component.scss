@@ -5,3 +5,15 @@ span {
 li {
     cursor: pointer;
 }
+
+.filter-options-container {
+    display: flex;
+    align-items: center;
+}
+
+.avanced-option-container {
+    margin-top: 8px;
+    app-search {
+        margin: 0 4px;
+    }
+}

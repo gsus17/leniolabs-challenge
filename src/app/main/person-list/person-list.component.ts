@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { MainService } from '../main.service';
 
 /**
@@ -11,7 +12,7 @@ import { MainService } from '../main.service';
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.scss']
 })
-export class PersonListComponent implements OnInit {
+export class PersonListComponent implements OnInit, OnDestroy {
   /** Person list */
   public personList = [];
 
@@ -20,6 +21,9 @@ export class PersonListComponent implements OnInit {
 
   /** Show/hide the avanced options */
   public showAvancedOptions: boolean = false;
+
+  /** Destroy$ of component */
+  private destroy$ = new Subject<void>();
 
   constructor(
     private mainService: MainService,
@@ -31,8 +35,8 @@ export class PersonListComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.mainService.getPersonList$()
-      .pipe(
-        map((response: any) => response.results[0].members))
+      .pipe(takeUntil(this.destroy$))
+      // tslint:disable-next-line: no-any 
       .subscribe((data: any) => {
         this.personList = data;
         this.renderList = data;
@@ -79,5 +83,13 @@ export class PersonListComponent implements OnInit {
    */
   public toggleAvancedOptions(value: boolean): void {
     this.showAvancedOptions = value;
+  }
+
+  /**
+   * Destroy component.
+   */
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
