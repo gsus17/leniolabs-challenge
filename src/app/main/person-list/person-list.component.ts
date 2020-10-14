@@ -46,7 +46,7 @@ export class PersonListComponent implements OnInit {
   /**
    * Filter by name.
    */
-  public filter(name: string): void {
+  public filterByName(name: string): void {
     this.renderList = this.personList.filter((x) => x.first_name.toLowerCase().includes(name));
   }
 }

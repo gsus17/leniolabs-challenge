@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    children:[
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'person-list'
+      },
       {
         path: 'person-list',
         loadChildren: () => import('./person-list/person-list.module').then(m => m.PersonListModule)

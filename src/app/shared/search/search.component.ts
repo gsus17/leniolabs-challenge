@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 /**
  * Search component.
@@ -12,6 +12,9 @@ export class SearchComponent implements OnInit {
 
   /** Search text. */
   public searchText: string = '';
+
+  /** placeholder */
+  @Input() public placeholder: string = '';
 
   /** Event to filter */
   @Output() public changeEvent = new EventEmitter<string>();

@@ -1,4 +1,4 @@
-<app-search (changeEvent)="filter($event)"></app-search>
+<app-search (changeEvent)="filterByName($event)" [placeholder]="'Ingrese un nombre'"></app-search>
 
 <ul>
     <li *ngFor="let item of renderList" (click)="personSelection(item.id)">{{item.first_name}}</li>
